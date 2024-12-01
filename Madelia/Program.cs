@@ -41,16 +41,17 @@ app.UseAuthorization();
 
 app.UseSession();
 
-// Map custom routes
 app.MapControllerRoute(
-    name: "tripPages",
-    pattern: "trip/add/{action=Add}/{id?}",
-    defaults: new { controller = "Trip", action = "Add" },
-    constraints: new { action = "Add|Page2|Page3" });
+    name: "details",
+    pattern: "{controller=Home}/{action=Details}/{id?}");
 
+app.MapControllerRoute(
+    name: "withCategory",
+    pattern: "{controller=Home}/{action=Index}/{activeCategory?}");
 
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
 
 app.Run();

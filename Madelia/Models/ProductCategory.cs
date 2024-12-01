@@ -4,7 +4,7 @@
     {
         // Foreign Keys
         public int ProductId { get; set; }
-        public int CategoryId { get; set; }
+        public string CategoryId { get; set; }
 
         // Navigation properties
         public Product Product { get; set; }

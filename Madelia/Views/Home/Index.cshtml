@@ -1,8 +1,49 @@
-﻿@{
+﻿@model List<Product>
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+
+<div class="dropdown mb-4">
+    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        Dropdown link
+    </a>
+
+    <ul class="dropdown-menu">
+        @foreach (Category item in ViewBag.Categories)
+        {
+            <li>
+                <a asp-action="Index" asp-route-activeCategory="@item.CategoryId" class="dropdown-item">@item.CategoryName</a>
+            </li>
+            
+        }
+    </ul>
 </div>
+
+<div class="row text-center">
+    @foreach (var product in Model)
+    {
+        <div class="col-md-4 mb-4">
+            <div class="card" style="width: 18rem; height: 40rem">
+                <img src="~/images/products/@product.ProductImage" class="card-img-top" style="height: 25rem" alt="@product.ProductName">
+                <div class="card-body">
+                    <h5 class="card-title">@product.ProductName</h5>
+                    <p class="card-text">@product.Description</p>
+                    <p class="card-text text-center">@product.Price</p>
+                    <div class="d-flex justify-content-between">
+                        <a class="btn btn-primary" asp-controller="Product" asp-action="Details"
+                           asp-route-id="@product.ProductId">Details</a>
+                        <form asp-controller="Cart" asp-action="Add" method="post" class="d-inline">
+                            <input type="hidden" name="productId" value="@product.ProductId" />
+                            <button type="submit" class="btn btn-secondary">
+                                <i class="fa-solid fa-cart-plus"></i>
+                            </button>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+

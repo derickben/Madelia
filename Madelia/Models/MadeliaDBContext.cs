@@ -67,22 +67,22 @@ namespace Madelia.Models
 
             // Seed Categories
             modelBuilder.Entity<Category>().HasData(
-                new Category { CategoryId = 1, CategoryName = "Electronics", Description = "Devices and gadgets" },
-                new Category { CategoryId = 2, CategoryName = "Clothing", Description = "Apparel and accessories" }
+                new Category { CategoryId = "jackets", CategoryName = "Jackets" },
+                new Category { CategoryId = "sneakers", CategoryName = "Sneakers"}
             );
 
             // Seed Products
             modelBuilder.Entity<Product>().HasData(
-                new Product { ProductId = 1, ProductName = "Smartphone", Price = 699.99m, StockQuantity = 50 },
-                new Product { ProductId = 2, ProductName = "Laptop", Price = 1199.99m, StockQuantity = 20 },
-                new Product { ProductId = 3, ProductName = "T-Shirt", Price = 19.99m, StockQuantity = 100 }
+                new Product { ProductId = 1, ProductName = "Reebok Ski Jacket", Description = "Male and Female Jackets", ProductImage = "reebok_ski_jacket.jpg", Price = 699.99m, StockQuantity = 50 },
+                new Product { ProductId = 2, ProductName = "George Men's Fleece Shacket", Description = "Male and Female Jackets", ProductImage = "george_jacket.jpg", Price = 1199.99m, StockQuantity = 20 },
+                new Product { ProductId = 3, ProductName = "Clarks Women's Pawley Adwin Sneaker", ProductImage= "clark_sneakers.jpg", Description = "Sneakers", Price = 19.99m, StockQuantity = 100 }
             );
 
             // Seed ProductCategory (Many-to-Many Relationships)
             modelBuilder.Entity<ProductCategory>().HasData(
-                new ProductCategory { ProductId = 1, CategoryId = 1 }, // Smartphone in Electronics
-                new ProductCategory { ProductId = 2, CategoryId = 1 }, // Laptop in Electronics
-                new ProductCategory { ProductId = 3, CategoryId = 2 }  // T-Shirt in Clothing
+                new ProductCategory { ProductId = 1, CategoryId = "jackets" }, // Reebok Ski Jacket in Jackets
+                new ProductCategory { ProductId = 2, CategoryId = "jackets" }, // George Men's Fleece Shacket in Jackets
+                new ProductCategory { ProductId = 3, CategoryId = "sneakers" }  // Clarks Women's Pawley Adwinin Sneakers
             );
 
             // Seed Orders

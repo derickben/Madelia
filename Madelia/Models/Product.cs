@@ -11,7 +11,10 @@ namespace Madelia.Models
         [Required(ErrorMessage = "Please enter a product name!")]
         public string ProductName { get; set; }
 
-        public string ProductImage { get; set; }
+        [Required(ErrorMessage = "Please enter a Product Description!")]
+        public string Description { get; set; }
+
+        public string? ProductImage { get; set; }
 
         [Required(ErrorMessage = "Please enter a price!")]
         public decimal Price { get; set; }
