@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 
 namespace Madelia.Controllers
 {
-    public class ProductController : Controller
+    public class ProductController : BaseController
     {
         private MadeliaDBContext _ctx;
 

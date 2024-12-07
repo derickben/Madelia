@@ -4,7 +4,7 @@ using System.Diagnostics;
 
 namespace Madelia.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         private MadeliaDBContext _ctx;
 
@@ -15,8 +15,6 @@ namespace Madelia.Controllers
 
         public IActionResult Index(string activeCategory = "all")
         {
-            var cartCount = HttpContext.Session.GetInt32("CartCount") ?? 0;
-            ViewBag.CartCount = cartCount;
 
             // Get all categories from the database
             List<Category> categories = _ctx.Categories.ToList();

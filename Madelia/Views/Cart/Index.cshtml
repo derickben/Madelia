@@ -1,0 +1,52 @@
+﻿@model List<CartItem>
+
+<h2>Your Cart</h2>
+
+@if (!Model.Any())
+{
+    <p>Your cart is empty. <a href="/">Continue shopping</a>.</p>
+}
+else
+{
+    <form asp-action="UpdateCart" method="post">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Name</td>
+                        <td>@item.Price.ToString("C")</td>
+                        <td>
+                            <!-- Quantity input -->
+                            <input type="number" name="Quantities[@item.ProductId]" value="@item.Quantity" min="1" class="form-control" />
+                        </td>
+                        <td>@((item.Price * item.Quantity).ToString("C"))</td>
+                        <td>
+                            <!-- Remove button -->
+                            <a asp-action="RemoveFromCart" asp-route-productId="@item.ProductId" class="btn btn-danger">Remove</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <div class="text-right">
+            <h4>
+                <strong>Total: @Model.Sum(item => item.Price * item.Quantity).ToString("C")</strong>
+            </h4>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Update Cart</button>
+    </form>
+
+    <a href="/checkout" class="btn btn-success">Proceed to Checkout</a>
+}

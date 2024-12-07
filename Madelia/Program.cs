@@ -42,16 +42,20 @@ app.UseAuthorization();
 app.UseSession();
 
 app.MapControllerRoute(
-    name: "details",
-    pattern: "{controller=Home}/{action=Details}/{id?}");
+    name: "homeCategory",
+    pattern: "home/index/category/{activeCategory?}",
+    defaults: new { controller = "Home", action = "Index" });
 
 app.MapControllerRoute(
-    name: "withCategory",
-    pattern: "{controller=Home}/{action=Index}/{activeCategory?}");
+    name: "productDetails",
+    pattern: "product/details/{id?}",
+    defaults: new { controller = "Product", action = "Details" });
 
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+
 
 
 app.Run();
